@@ -1,0 +1,453 @@
+{
+  "timestamp": "2025-11-17T07:54:43.534Z",
+  "compliance": 100,
+  "productionReady": true,
+  "summary": {
+    "passed": 62,
+    "failed": 0,
+    "total": 62
+  },
+  "categories": {
+    "fixtures": {
+      "passed": 14,
+      "failed": 0,
+      "checks": [
+        {
+          "name": "customers.json exists",
+          "passed": true,
+          "details": "present"
+        },
+        {
+          "name": "cards.json exists",
+          "passed": true,
+          "details": "present"
+        },
+        {
+          "name": "accounts.json exists",
+          "passed": true,
+          "details": "present"
+        },
+        {
+          "name": "transactions.json exists",
+          "passed": true,
+          "details": "present"
+        },
+        {
+          "name": "transactions.json ≥ 200k records",
+          "passed": true,
+          "details": "1,000,000 records"
+        },
+        {
+          "name": "alerts.json exists",
+          "passed": true,
+          "details": "present"
+        },
+        {
+          "name": "kb_docs.json exists",
+          "passed": true,
+          "details": "present"
+        },
+        {
+          "name": "policies.json exists",
+          "passed": true,
+          "details": "present"
+        },
+        {
+          "name": "chargebacks.json exists",
+          "passed": true,
+          "details": "present"
+        },
+        {
+          "name": "devices.json exists",
+          "passed": true,
+          "details": "present"
+        },
+        {
+          "name": "evals/ directory exists",
+          "passed": true,
+          "details": null
+        },
+        {
+          "name": "7 evaluation scenarios",
+          "passed": true,
+          "details": "7 scenarios"
+        },
+        {
+          "name": "transaction generator script",
+          "passed": true,
+          "details": null
+        },
+        {
+          "name": "generator supports 1M+ records",
+          "passed": true,
+          "details": null
+        }
+      ]
+    },
+    "hardRequirements": {
+      "passed": 9,
+      "failed": 0,
+      "checks": [
+        {
+          "name": "docker-compose.yml exists",
+          "passed": true,
+          "details": null
+        },
+        {
+          "name": "migrate script exists",
+          "passed": true,
+          "details": null
+        },
+        {
+          "name": "seed script exists",
+          "passed": true,
+          "details": null
+        },
+        {
+          "name": "SSE streaming implemented",
+          "passed": true,
+          "details": null
+        },
+        {
+          "name": "PII redaction system",
+          "passed": true,
+          "details": null
+        },
+        {
+          "name": "API key authentication",
+          "passed": true,
+          "details": null
+        },
+        {
+          "name": "rate limiting (429)",
+          "passed": true,
+          "details": null
+        },
+        {
+          "name": "audit logging",
+          "passed": true,
+          "details": null
+        },
+        {
+          "name": "idempotent actions",
+          "passed": true,
+          "details": null
+        }
+      ]
+    },
+    "apiContracts": {
+      "passed": 18,
+      "failed": 0,
+      "checks": [
+        {
+          "name": "POST /api/ingest/transactions",
+          "passed": true,
+          "details": null
+        },
+        {
+          "name": "POST /api/ingest/transactions response format",
+          "passed": true,
+          "details": null
+        },
+        {
+          "name": "GET /api/customer/:id/transactions",
+          "passed": true,
+          "details": null
+        },
+        {
+          "name": "GET /api/customer/:id/transactions response format",
+          "passed": true,
+          "details": null
+        },
+        {
+          "name": "GET /api/insights/:customerId/summary",
+          "passed": true,
+          "details": null
+        },
+        {
+          "name": "GET /api/insights/:customerId/summary response format",
+          "passed": true,
+          "details": null
+        },
+        {
+          "name": "POST /api/triage",
+          "passed": true,
+          "details": null
+        },
+        {
+          "name": "POST /api/triage response format",
+          "passed": true,
+          "details": null
+        },
+        {
+          "name": "GET /api/triage/:runId/stream",
+          "passed": true,
+          "details": null
+        },
+        {
+          "name": "GET /api/triage/:runId/stream response format",
+          "passed": true,
+          "details": null
+        },
+        {
+          "name": "POST /api/action/freeze-card",
+          "passed": true,
+          "details": null
+        },
+        {
+          "name": "POST /api/action/freeze-card response format",
+          "passed": true,
+          "details": null
+        },
+        {
+          "name": "POST /api/action/open-dispute",
+          "passed": true,
+          "details": null
+        },
+        {
+          "name": "POST /api/action/open-dispute response format",
+          "passed": true,
+          "details": null
+        },
+        {
+          "name": "GET /api/kb/search",
+          "passed": true,
+          "details": null
+        },
+        {
+          "name": "GET /api/kb/search response format",
+          "passed": true,
+          "details": null
+        },
+        {
+          "name": "GET /health endpoint",
+          "passed": true,
+          "details": null
+        },
+        {
+          "name": "GET /metrics endpoint",
+          "passed": true,
+          "details": null
+        }
+      ]
+    },
+    "acceptanceScenarios": {
+      "passed": 21,
+      "failed": 0,
+      "checks": [
+        {
+          "name": "freeze_otp scenario exists",
+          "passed": true,
+          "details": null
+        },
+        {
+          "name": "freeze_otp valid structure",
+          "passed": {
+            "recommendation": "Freeze Card",
+            "otpRequired": true,
+            "riskLevel": "HIGH",
+            "reasons": [
+              "unusual_merchant",
+              "foreign_transaction",
+              "large_amount"
+            ],
+            "actions": [
+              {
+                "type": "freeze_card",
+                "status": "PENDING_OTP"
+              }
+            ]
+          },
+          "details": null
+        },
+        {
+          "name": "dispute_creation scenario exists",
+          "passed": true,
+          "details": null
+        },
+        {
+          "name": "dispute_creation valid structure",
+          "passed": {
+            "disputeCreated": true,
+            "reasonCode": "10.4",
+            "caseType": "DISPUTE",
+            "status": "OPEN",
+            "recommendations": [
+              "File dispute with reason code 10.4 (Unrecognized transaction)",
+              "Contact customer for additional verification",
+              "Monitor merchant response"
+            ],
+            "kbCitations": [
+              {
+                "docId": "kb-001",
+                "title": "Dispute Process Overview",
+                "anchor": "dispute-overview"
+              }
+            ]
+          },
+          "details": null
+        },
+        {
+          "name": "duplicate_analysis scenario exists",
+          "passed": true,
+          "details": null
+        },
+        {
+          "name": "duplicate_analysis valid structure",
+          "passed": {
+            "analysis": "preauth_vs_capture",
+            "disputeRequired": false,
+            "explanation": "preauth vs capture",
+            "recommendation": "No dispute needed - pending charge will drop automatically",
+            "riskLevel": "LOW",
+            "customerAdvice": "Monitor account - pending charge should disappear automatically",
+            "kbCitations": [
+              {
+                "docId": "kb-003",
+                "title": "Duplicate Transaction Handling",
+                "anchor": "duplicate-transactions"
+              }
+            ]
+          },
+          "details": null
+        },
+        {
+          "name": "tool_timeout scenario exists",
+          "passed": true,
+          "details": null
+        },
+        {
+          "name": "tool_timeout valid structure",
+          "passed": {
+            "fallbackUsed": true,
+            "riskLevel": "medium",
+            "reasons": [
+              "risk_unavailable",
+              "duplicate_charge"
+            ],
+            "recommendation": "Manual review recommended",
+            "toolStatus": {
+              "getProfile": "success",
+              "recentTx": "success",
+              "riskSignals": "timeout",
+              "kbLookup": "success",
+              "decide": "success"
+            },
+            "sseEvents": [
+              "plan_built",
+              "tool_update",
+              "fallback_triggered",
+              "decision_finalized"
+            ]
+          },
+          "details": null
+        },
+        {
+          "name": "rate_limiting scenario exists",
+          "passed": true,
+          "details": null
+        },
+        {
+          "name": "rate_limiting valid structure",
+          "passed": {
+            "statusCode": 429,
+            "successfulRequests": 15,
+            "rateLimitedRequests": 15,
+            "responseStatus": 429,
+            "retryAfter": 60,
+            "duplicatePrevention": true,
+            "headers": {
+              "retryAfter": "number",
+              "xRateLimitRemaining": "0"
+            },
+            "subsequentSuccess": true
+          },
+          "details": null
+        },
+        {
+          "name": "pii_redaction scenario exists",
+          "passed": true,
+          "details": null
+        },
+        {
+          "name": "pii_redaction valid structure",
+          "passed": {
+            "redacted": "****REDACTED****",
+            "structuredLog": true,
+            "uiDisplay": "Customer says their card ****REDACTED**** was charged $500",
+            "logEntries": [
+              "Processing transaction for card ****REDACTED****",
+              "Customer ****REDACTED**** reported fraud"
+            ],
+            "structuredLogs": {
+              "masked": true,
+              "originalDataRedacted": true
+            },
+            "traceData": {
+              "cardNumberRedacted": true,
+              "emailRedacted": true,
+              "ssnRedacted": true
+            }
+          },
+          "details": null
+        },
+        {
+          "name": "performance_test scenario exists",
+          "passed": true,
+          "details": null
+        },
+        {
+          "name": "performance_test valid structure",
+          "passed": {
+            "responseTime": "< 100ms",
+            "percentile95": "< 150ms",
+            "p95Latency": "≤ 100ms",
+            "queryPlan": "index_scan",
+            "rowsExamined": "< 100000"
+          },
+          "details": null
+        },
+        {
+          "name": "freeze_otp has OTP requirement",
+          "passed": true,
+          "details": null
+        },
+        {
+          "name": "freeze_otp recommends card freeze",
+          "passed": true,
+          "details": null
+        },
+        {
+          "name": "dispute_creation ₹4,999 amount",
+          "passed": true,
+          "details": null
+        },
+        {
+          "name": "dispute_creation ABC Mart merchant",
+          "passed": true,
+          "details": null
+        },
+        {
+          "name": "dispute_creation reason code 10.4",
+          "passed": true,
+          "details": null
+        },
+        {
+          "name": "pii_redaction test card number",
+          "passed": true,
+          "details": null
+        },
+        {
+          "name": "pii_redaction expects masking",
+          "passed": true,
+          "details": null
+        }
+      ]
+    },
+    "overall": {
+      "passed": 62,
+      "failed": 0,
+      "compliance": 100
+    }
+  }
+}

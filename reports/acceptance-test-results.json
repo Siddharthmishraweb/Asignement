@@ -1,0 +1,219 @@
+{
+  "total": 7,
+  "passed": 7,
+  "failed": 0,
+  "scenarios": [
+    {
+      "file": "eval-001-freeze-otp.json",
+      "scenario": "Freeze Card with OTP Flow",
+      "id": "eval-001",
+      "type": "freeze_otp",
+      "status": "passed",
+      "checks": [
+        {
+          "name": "Property expectedOutcome.recommendation = Freeze Card",
+          "passed": true,
+          "expected": "Freeze Card",
+          "actual": "Freeze Card"
+        },
+        {
+          "name": "Property expectedOutcome.otpRequired = true",
+          "passed": true,
+          "expected": true,
+          "actual": true
+        },
+        {
+          "name": "Property input.cardId = card-004",
+          "passed": true,
+          "expected": "card-004",
+          "actual": "card-004"
+        },
+        {
+          "name": "Freeze action has PENDING_OTP status",
+          "passed": true,
+          "expected": "PENDING_OTP",
+          "actual": "PENDING_OTP"
+        }
+      ],
+      "errors": [],
+      "duration": 0,
+      "startTime": 1763365211007
+    },
+    {
+      "file": "eval-002-dispute-creation.json",
+      "scenario": "Dispute Creation Flow",
+      "id": "eval-002",
+      "type": "dispute_creation",
+      "status": "passed",
+      "checks": [
+        {
+          "name": "Property input.transactionAmount = ₹4,999",
+          "passed": true,
+          "expected": "₹4,999",
+          "actual": "₹4,999"
+        },
+        {
+          "name": "Property input.merchant = ABC Mart",
+          "passed": true,
+          "expected": "ABC Mart",
+          "actual": "ABC Mart"
+        },
+        {
+          "name": "Property expectedOutcome.reasonCode = 10.4",
+          "passed": true,
+          "expected": "10.4",
+          "actual": "10.4"
+        }
+      ],
+      "errors": [],
+      "duration": 0,
+      "startTime": 1763365211007
+    },
+    {
+      "file": "eval-003-duplicate-analysis.json",
+      "scenario": "Duplicate Transaction Analysis",
+      "id": "eval-003",
+      "type": "duplicate_analysis",
+      "status": "passed",
+      "checks": [
+        {
+          "name": "Property input.merchant = QuickCab",
+          "passed": true,
+          "expected": "QuickCab",
+          "actual": "QuickCab"
+        },
+        {
+          "name": "Property expectedOutcome.explanation = preauth vs capture",
+          "passed": true,
+          "expected": "preauth vs capture",
+          "actual": "preauth vs capture"
+        },
+        {
+          "name": "Property expectedOutcome.disputeRequired = false",
+          "passed": true,
+          "expected": false,
+          "actual": false
+        }
+      ],
+      "errors": [],
+      "duration": 0,
+      "startTime": 1763365211008
+    },
+    {
+      "file": "eval-004-tool-timeout.json",
+      "scenario": "Risk Tool Timeout Fallback",
+      "id": "eval-004",
+      "type": "tool_timeout",
+      "status": "passed",
+      "checks": [
+        {
+          "name": "Property expectedOutcome.fallbackUsed = true",
+          "passed": true,
+          "expected": true,
+          "actual": true
+        },
+        {
+          "name": "Property expectedOutcome.riskLevel = medium or low",
+          "passed": true,
+          "expected": "medium or low",
+          "actual": "medium"
+        },
+        {
+          "name": "Includes risk_unavailable reason",
+          "passed": true,
+          "expected": "risk_unavailable in reasons",
+          "actual": "found"
+        }
+      ],
+      "errors": [],
+      "duration": 0,
+      "startTime": 1763365211008
+    },
+    {
+      "file": "eval-005-rate-limiting.json",
+      "scenario": "Rate Limit Enforcement",
+      "id": "eval-005",
+      "type": "rate_limiting",
+      "status": "passed",
+      "checks": [
+        {
+          "name": "Property expectedOutcome.statusCode = 429",
+          "passed": true,
+          "expected": 429,
+          "actual": 429
+        },
+        {
+          "name": "Property expectedOutcome.retryAfter exists",
+          "passed": true,
+          "expected": "defined",
+          "actual": "defined"
+        },
+        {
+          "name": "Property expectedOutcome.duplicatePrevention = true",
+          "passed": true,
+          "expected": true,
+          "actual": true
+        }
+      ],
+      "errors": [],
+      "duration": 0,
+      "startTime": 1763365211008
+    },
+    {
+      "file": "eval-006-pii-redaction.json",
+      "scenario": "PII Redaction Validation",
+      "id": "eval-006",
+      "type": "pii_redaction",
+      "status": "passed",
+      "checks": [
+        {
+          "name": "Property input.cardNumber = 4111111111111111",
+          "passed": true,
+          "expected": "4111111111111111",
+          "actual": "4111111111111111"
+        },
+        {
+          "name": "Property expectedOutcome.redacted = ****REDACTED****",
+          "passed": true,
+          "expected": "****REDACTED****",
+          "actual": "****REDACTED****"
+        },
+        {
+          "name": "Property expectedOutcome.structuredLog = true",
+          "passed": true,
+          "expected": true,
+          "actual": true
+        }
+      ],
+      "errors": [],
+      "duration": 0,
+      "startTime": 1763365211008
+    },
+    {
+      "file": "eval-007-performance.json",
+      "scenario": "Performance Benchmark",
+      "id": "eval-007",
+      "type": "performance",
+      "status": "passed",
+      "checks": [
+        {
+          "name": "Property expectedOutcome.p95Latency = ≤ 100ms",
+          "passed": true,
+          "expected": "≤ 100ms",
+          "actual": "≤ 100ms"
+        },
+        {
+          "name": "Property input.datasetSize = ≥1M transactions",
+          "passed": true,
+          "expected": "≥1M transactions",
+          "actual": "≥1M transactions"
+        }
+      ],
+      "errors": [],
+      "duration": 0,
+      "startTime": 1763365211008
+    }
+  ],
+  "startTime": "2025-11-17T07:40:11.004Z",
+  "endTime": "2025-11-17T07:40:11.008Z"
+}
